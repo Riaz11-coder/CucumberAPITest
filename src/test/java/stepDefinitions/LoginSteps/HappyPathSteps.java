@@ -7,6 +7,7 @@ import apiEngine.responses.LoginResponses.HappyPathResponse;
 import cucumber.DependencyInjector;
 import cucumber.TestContext;
 import enums.Context;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -39,4 +40,6 @@ public class HappyPathSteps {
         assertNotNull(loginResponse.getBody().getToken());
         testContext.getScenarioContext().setContext(Context.TOKEN, loginResponse.getBody().getToken());
     }
+
+
 }

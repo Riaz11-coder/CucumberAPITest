@@ -11,6 +11,7 @@ import enums.Context;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import org.netbeans.lib.cvsclient.response.ResponseException;
 
 import java.util.Map;
@@ -36,16 +37,13 @@ public class SadPathSteps {
     @Then("I should receive an unsuccessful response.")
     public void iShouldReceiveAnUnsuccessfulResponse() throws ResponseException {
         Response response = testContext.getScenarioContext().getContext(Context.RESPONSE);
-        String contentType = response.getHeader("Content-Type");
 
-        if (contentType != null && contentType.contains("application/json")) {
-            IRestResponse<SadPathResponse> restResponse = new ResponseHandler<>(SadPathResponse.class, response);
-            assertEquals(400, restResponse.getStatusCode());
-            assertEquals("Missing password", restResponse.getBody().getError());
-            System.out.println("Response content: " + restResponse.getContent());
-        } else {
-            throw new RuntimeException("Unsupported content type: " + contentType);
-        }
+
+        IRestResponse<SadPathResponse> loginResponse = new ResponseHandler<>(SadPathResponse.class,response);
+        Assert.assertEquals(400,loginResponse.getStatusCode());
+        Assert.assertEquals("Missing password",loginResponse.getBody().getError());
+        System.out.println(loginResponse.getResponse().asString());
+        System.out.println(loginResponse.getBody().getError());
     }
 
 

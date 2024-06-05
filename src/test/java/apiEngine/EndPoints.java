@@ -1,7 +1,6 @@
 package apiEngine;
 
-import apiEngine.requests.LoginRequests.HappyPathRequest;
-import apiEngine.requests.LoginRequests.SadPathRequest;
+import apiEngine.requests.LoginRequests.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataProvider.ConfigReader;
@@ -52,11 +51,6 @@ public class EndPoints {
         return response;
     }
 
-    //        String invalidEmail = ConfigReader.getInstance().getWrongEmail();
-    //        String invalidEmailRequest = "{\"email\":\"" + invalidEmail + "\"}";
-
-    //        SadPathRequest unsuccessfulLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
-
     public Response loginWithInvalidEmail() {
         SadPathRequest invalidLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
         Response response = given()
@@ -65,6 +59,38 @@ public class EndPoints {
                 .post(BASE_URL + "/login");
         return response;
     }
+
+    public Response CreateUser(){
+        CreateUserRequest createUserRequest = new CreateUserRequest(ConfigReader.getInstance().getName(), ConfigReader.getInstance().getJob());
+        Response response = given()
+                .contentType("application/json")
+                .body(createUserRequest)
+                .post(BASE_URL + "/users");
+        return response;
+    }
+
+    public Response UpdateUser(){
+        UpdateUserRequest updateUserRequest = new UpdateUserRequest(ConfigReader.getInstance().getName(), ConfigReader.getInstance().getJob());
+        Response response = given()
+                .contentType("application/json")
+                .body(updateUserRequest)
+                .put(BASE_URL + "/users/2");
+
+        return response;
+    }
+
+    public Response DeleteUser(){
+        DeleteUserRequest deleteUserRequest = new DeleteUserRequest(ConfigReader.getInstance().getName(), ConfigReader.getInstance().getJob());
+        Response response = given()
+                .contentType("application/json")
+                .body(deleteUserRequest)
+                .delete(BASE_URL + "/users/2");
+
+        return response;
+
+    }
+
+
 
 
 
