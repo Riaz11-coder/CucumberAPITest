@@ -1,5 +1,8 @@
 package apiEngine.responses.LoginResponses;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 public class CreateUserResponse {
 
     private String name;
@@ -41,9 +44,17 @@ public class CreateUserResponse {
 
 
 
-    public String getCreatedUser(){
-        return name + job + id + createdAt;
+
+    public String getCreatedUser() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", name);
+        jsonObject.addProperty("job", job);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("createdAt", createdAt);
+
+        return new Gson().toJson(jsonObject);
     }
+
 
 
 }

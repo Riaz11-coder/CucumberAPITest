@@ -1,7 +1,7 @@
 Feature: Create User
 
 	#Create new user
-	@TEST_EL-30 @CreateUser
+	@TEST_EL-30 @CreateUser @Regression
 	Scenario: Create User
 
 		When I provide valid user details (name and job), 

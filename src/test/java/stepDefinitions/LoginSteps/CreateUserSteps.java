@@ -41,7 +41,7 @@ public class CreateUserSteps {
         System.out.println(createUser.getBody().getCreatedUser());
         Assert.assertEquals(createUser.getResponse().asString(),createUser.getBody().getCreatedUser());
         Assert.assertEquals("morpheus",createUser.getBody().getName());
-        Assert.assertEquals("leader",createUser.getBody().getJob());
+        Assert.assertEquals("zion resident",createUser.getBody().getJob());
         Assert.assertNotNull(createUser.getBody().getId());
         Assert.assertNotNull(createUser.getBody().getCreatedAt());
     }

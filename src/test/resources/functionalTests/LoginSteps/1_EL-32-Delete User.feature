@@ -1,7 +1,7 @@
 Feature: Delete User
 
 	#Deletes user
-	@TEST_EL-32 @DeleteUser
+	@TEST_EL-32 @DeleteUser @Regression
 	Scenario: Delete User
 
 		When I delete a user by providing a user ID,

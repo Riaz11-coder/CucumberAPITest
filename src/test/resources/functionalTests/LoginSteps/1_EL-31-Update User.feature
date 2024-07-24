@@ -1,7 +1,7 @@
 Feature: Update user
 
 	#User should be able to update User information.
-	@TEST_EL-31 @UpdateUser
+	@TEST_EL-31 @UpdateUser @Regression
 	Scenario: Update user
 
 		When I provide valid user update details (name and job)
